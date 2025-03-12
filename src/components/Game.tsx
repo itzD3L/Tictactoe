@@ -76,7 +76,6 @@ const Game : React.FC = () => {
     }, [])
 
     const submitMove = (boxNum : number) => {
-        console.table(currentPlayer)
         if(!Boolean(board[boxNum])) {
             if(socket.id === currentTurn.playerId) {
                 socket.emit('makeMove', {

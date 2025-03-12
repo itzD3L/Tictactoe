@@ -80,7 +80,7 @@ const MatchMaking: React.FC<MatchMakingProps> = ({playerName, cancelMatchMaking}
 
     useEffect(() => {
         if(countdown === 0) {
-            navigate(`/game`)
+            navigate(`game`)
         }
     }, [countdown, navigate])
 

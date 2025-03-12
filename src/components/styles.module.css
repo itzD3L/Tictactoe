@@ -4,8 +4,98 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+}
+
+
+.publicHeader {
+    font-size: 1.8rem;
+}
+
+.publicHeader h1 {
+    margin: 0;
+}
+
+.publicMain {
+    padding: 5px;
+    margin: 20px;
+    overflow: hidden;
+    height: 200px;
+    border-radius: 10px;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.publicActive {
+    height: 600px;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+    font-size: 0.8rem;
+}
+
+.mainOne p:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.mainTwo p:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.mainThree p:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.mainFour p:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.mainReadMore {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6));
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.publicFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+}
+
+.publicFooter a:nth-child(1){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #000;
+    width: fit-content;
+    padding: 5px 10px;
+    height: 50px;
+    border-radius: 8px;
+    text-decoration:none;
+}
+
+.publicFooter a:nth-child(2) {
+    color: #000;
+    width: 80px;
 }
 
 /* Home */
@@ -17,6 +107,7 @@
     width: 100%;
     max-width: 400px;
     padding: 20px;
+    margin: auto;
 }
 
 .logo {
@@ -180,6 +271,8 @@
     justify-content: center;
     gap: 15px;
     width: 100%;
+    margin: auto;
+    padding: 20px;
 }
 
 .gameContainer p {

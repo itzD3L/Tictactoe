@@ -33,7 +33,7 @@ const Result : React.FC<ResultProps> = ({ opponentName, result }) => {
     }
 
     const handleBackBTN = () => {
-        navigate('/', { replace: true })
+        navigate('/tictactoe', { replace: true })
     }
 
 
