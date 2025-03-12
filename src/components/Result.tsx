@@ -9,7 +9,6 @@ interface ResultProps {
 
 const Result : React.FC<ResultProps> = ({ opponentName, result }) => {
     const navigate = useNavigate();
-
     const resultConfig = {
         win : {
             title: 'Congratulations!',

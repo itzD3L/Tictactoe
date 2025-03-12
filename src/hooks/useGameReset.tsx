@@ -10,7 +10,7 @@ export const useGameReset = () => {
         setOpponent({ playerName: '', playerId: '', symbol: '' });
         setCurrentTurn({ playerName: '', playerId: '', symbol: '' });
         setBoard([]);
-        setStatus({ status: '', player: {playerName: '', playerId: '', symbol: ''} });
+        setStatus('pending');
     };
 
     return resetGame;

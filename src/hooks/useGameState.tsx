@@ -8,8 +8,8 @@ interface GameState {
     setCurrentTurn: (turn : {playerName: string; playerId: string; symbol: string}) => void;
     board: any[];
     setBoard: (board: any[]) => void;
-    status: { status: 'win' | 'lose' | 'draw' | 'left' | 'pending', player: { playerName: string; playerId: string; symbol: string }}
-    setStatus: (status: { status: string, player: { playerName: string; playerId: string; symbol: string }}) => void;
+    status:'win' | 'lose' | 'draw' | 'left' | 'pending';
+    setStatus: (status: 'win' | 'lose' | 'draw' | 'left' | 'pending') => void;
 }
 
 export const useGameState = () : GameState => {

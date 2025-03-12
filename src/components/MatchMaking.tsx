@@ -22,13 +22,9 @@ const MatchMaking: React.FC<MatchMakingProps> = ({playerName, cancelMatchMaking}
     } = usePlayerState();
 
     const {
-        gameId,
         setGameId,
-        currentTurn,
         setCurrentTurn,
-        board,
         setBoard,
-        status,
         setStatus
     } = useGameState();
 
@@ -41,14 +37,7 @@ const MatchMaking: React.FC<MatchMakingProps> = ({playerName, cancelMatchMaking}
         socket.on('waitingForOpponent', () => {
             setMatchFound(false)
         })
-        // socket.on('gameFound', ({ gameId, player, opponent }) => {
-        //     console.log(gameId, player, opponent)
-        //     setGameId(gameId)
-        //     setPlayer1({playerName: player.playerName, playerSymbol: player.playerSymbol})
-        //     setPlayer2(opponent)
-    
-        //     setMatchFound(true)
-        // })
+
         socket.on('gameStart', (gameData) => {
             const { gameId, currentTurn, board, players } = gameData;
             setGameId(gameId)
@@ -65,12 +54,9 @@ const MatchMaking: React.FC<MatchMakingProps> = ({playerName, cancelMatchMaking}
             cancelMatchMaking();
         })
 
-        socket.on('playerLeft', ({ status, player }) => {
+        socket.on('playerLeft', ({ status }) => {
             if(status === 'left') {
-                setStatus({
-                    status,
-                    player
-                })
+                setStatus(status)
             }
         })
 
@@ -130,9 +116,6 @@ const MatchMaking: React.FC<MatchMakingProps> = ({playerName, cancelMatchMaking}
             
         </div>
     );
-
-    
-    
 
     return content
 }

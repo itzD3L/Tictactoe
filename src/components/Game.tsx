@@ -5,23 +5,18 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useGameState } from '../hooks/useGameState'
 import { usePlayerState } from '../hooks/usePlayerState'
-import { useGameReset } from '../hooks/useGameReset'
 import Shape from './Shape'
 import Result from './Result'
 
 const Game : React.FC = () => {
     const navigate = useNavigate()
-    const resetGame = useGameReset();
     const {
         currentPlayer,
-        setCurrentPlayer,
         opponent,
-        setOpponent
     } = usePlayerState();
 
     const {
         gameId,
-        setGameId,
         currentTurn,
         setCurrentTurn,
         board,
@@ -29,43 +24,18 @@ const Game : React.FC = () => {
         status,
         setStatus
     } = useGameState();
-    // const {
-    //     gameId,
-    //     currentPlayer,
-    //     opponent,
-    //     currentTurn,
-    //     setCurrentTurn,
-    //     board,
-    //     setBoard,
-    //     status,
-    //     setStatus
-    // } = useGameState() as {
-    //     gameId: string;
-    //     currentPlayer: { playerName: string, playerId: string, symbol: string };
-    //     opponent: { playerName: string, playerId: string, symbol: string };
-    //     currentTurn: { playerName: string; playerId: string; symbol: string };
-    //     setCurrentTurn: (turn: string) => void;
-    //     board: Array<{ playerName: string; symbol: string }>;
-    //     setBoard: (board: Array<{ playerName: string; symbol: string }>) => void;
-    //     status: {status: statusProps, player: any};
-    //     setStatus: (status: { status: string, player: string }) => void;
-    // };
-
-    // const [result, setResult] = useState<resultProps>({
-    //     opponentName: '',
-    //     result: 'pending'
-    // })
+    
     const [gameCompleted, setGameCompleted] = useState(false)
 
     useEffect(() => {
         if(!gameId) {
             navigate('/', { replace: true })
         }
-        if(status.status === 'left') {
+        if(status === 'left') {
             setGameCompleted(true)
         }
 
-        socket.on('boardUpdated', ({ board, lastMove, currentTurn }) => {
+        socket.on('boardUpdated', ({ board, currentTurn }) => {
             setBoard(board)
             setCurrentTurn(currentTurn)
         })
@@ -76,36 +46,24 @@ const Game : React.FC = () => {
             if(status === 'draw') {
                 storedRecord.draw = (storedRecord.draw || null) + 1;
                 sessionStorage.setItem('record', JSON.stringify(storedRecord))
-                setStatus({
-                    status: status,
-                    player: player,
-                })
+                setStatus(status)
             } else {
                 if(player.playerId === currentPlayer.playerId) {
                     storedRecord.win = (storedRecord.win || null) + 1;
                     sessionStorage.setItem('record', JSON.stringify(storedRecord))
-                    setStatus({
-                        status: 'win',
-                        player: player,
-                    })
+                    setStatus('win')
                 } else {
                     storedRecord.lose = (storedRecord.lose || null) + 1;
                     sessionStorage.setItem('record', JSON.stringify(storedRecord))
-                    setStatus({
-                        status: 'lose',
-                        player: player,
-                    })
+                    setStatus('lose')
                 }
             }
             setGameCompleted(true)
         })
 
-        socket.on('playerLeft', ({ status, player }) => {
+        socket.on('playerLeft', ({ status }) => {
             if(status === 'left') {
-                setStatus({
-                    status: status,
-                    player: player,
-                })
+                setStatus(status)
                 setGameCompleted(true)
             }
         })
@@ -126,9 +84,6 @@ const Game : React.FC = () => {
                     boxNum,
                     currentPlayer
                 })
-                
-            } else {
-                console.log('Not your turn')
             }
         }
     }
@@ -160,7 +115,7 @@ const Game : React.FC = () => {
 
     let content = (
         <div className={styles.gameContainer}>
-            {gameCompleted && <Result opponentName={status.player.playerName} result={status.status}/>}
+            {gameCompleted && <Result opponentName={opponent.playerName} result={status}/>}
             <div className={styles.game__title}>
                 <h1>Tic Tac Toe</h1>
             </div>

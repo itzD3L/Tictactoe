@@ -10,18 +10,15 @@ export const GameProvider = ({ children } : {children : ReactNode}) => {
         symbol: string
     }>({playerName: '', playerId: '', symbol: ''});
     const [board, setBoard] = useState<any>([]);
-    const [status, setStatus] = useState<{ 
-        status: string, 
-        player: {playerName: string, playerId: string, symbol: string}
-    }>({status: 'pending', player: {playerName: '', playerId: '', symbol: ''}});
+    const [status, setStatus] = useState<string>('pending');
 
     const value = useMemo(() => ({
         gameId,
         setGameId,
         currentTurn,
         setCurrentTurn,
-        board,//
-        setBoard,//
+        board,
+        setBoard,
         status,
         setStatus
     }), [gameId, currentTurn, board, status])
