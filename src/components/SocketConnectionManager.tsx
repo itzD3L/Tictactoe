@@ -8,9 +8,11 @@ import tictactoepng from '../assets/tictactoe.png'
 const SocketConnectionManager : React.FC = () => {
     const [isConnected, setIsConnected] = useState<boolean>(false);
 
-    socket.connect();
+    
 
     useEffect(() => {
+        socket.connect();
+
         function onConnect () {
             setIsConnected(true);
         }
