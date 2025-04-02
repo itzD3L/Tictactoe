@@ -1,10 +1,9 @@
-import './App.css'
 import { Route, Routes } from 'react-router'
-import Layout from './components/Layout'
-import SocketConnectionManager from './components/SocketConnectionManager'
-import Public from './components/Public'
-import Home from './components/Home'
-import Game from './components/Game'
+import Layout from './components/layout/Layout'
+import SocketConnectionManager from './services/SocketConnectionManager'
+import Public from './pages/Public'
+import Home from './pages/Home'
+import Game from './pages/Game'
 
 function App() {
 

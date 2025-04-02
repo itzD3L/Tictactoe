@@ -9,6 +9,7 @@ export const GameProvider = ({ children } : {children : ReactNode}) => {
         playerId: string,
         symbol: string
     }>({playerName: '', playerId: '', symbol: ''});
+    const [gameMode, setGameMode] = useState<'3x3' | '6x6' | 'endless'>('3x3')
     const [board, setBoard] = useState<any>([]);
     const [status, setStatus] = useState<string>('pending');
 
@@ -17,11 +18,13 @@ export const GameProvider = ({ children } : {children : ReactNode}) => {
         setGameId,
         currentTurn,
         setCurrentTurn,
+        gameMode,
+        setGameMode,
         board,
         setBoard,
         status,
         setStatus
-    }), [gameId, currentTurn, board, status])
+    }), [gameId, currentTurn, gameMode, board, status])
 
     return (
         <GameContext.Provider value={value}>

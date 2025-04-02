@@ -1,9 +1,9 @@
-import styles from './styles.module.css'
+import styles from '../styles/styles.module.css'
 import tictactoepng from '../assets/tictactoe.png'
 import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
-import { socket } from '../socket'
-import MatchMaking from './MatchMaking'
+import { socket } from '../services/socket'
+import MatchMaking from '../components/common/MatchMaking'
 import { useGameReset } from '../hooks/useGameReset'
 
 const Home: React.FC = () => {
@@ -11,12 +11,16 @@ const Home: React.FC = () => {
 
     const [name, setName] = useState<string>('')
     const [isLoad, setIsLoad] = useState<boolean>(false)
-    const [openInfo, setOpenInfo] = useState<boolean>(false)
+    const [gameMode, setGameMode] = useState<'classic' | 'enhanced' | 'endless'>('classic')
     const [playerCount, setPlayerCount] = useState<number>(0)
     const [showMatchMaking, setShowMatchMaking] = useState<boolean>(false);
+    const [openInfo, setOpenInfo] = useState<boolean>(false)
     const [record, setRecord] = useState<{win: number, lose: number, draw: number}>({win: 0, lose: 0, draw: 0})
 
     useEffect(() => {
+        resetGame();
+        //make sure to emit to clear game
+
         if(sessionStorage.getItem('username')) {
             setIsLoad(true)
             setName(sessionStorage.getItem('username')!)
@@ -62,7 +66,7 @@ const Home: React.FC = () => {
     let content = (
         <div className={styles.homeContainer}>
             {showMatchMaking ? 
-                <MatchMaking playerName={name} cancelMatchMaking={cancelMatchMaking}/>
+                <MatchMaking playerName={name} gameMode={gameMode} cancelMatchMaking={cancelMatchMaking}/> //  add the game mode over here
             : null}
             <motion.div
                 className={styles.logo}
@@ -73,7 +77,8 @@ const Home: React.FC = () => {
                     delay: 1.5 
                 }}
             >
-                <motion.img src={tictactoepng}  
+                <motion.img src={tictactoepng}
+                    title="Tic Tac Toe"
                     alt="Tic Tac Toe"
                     className={styles.icon}
                     initial={{ rotate: 0 }}
@@ -108,6 +113,14 @@ const Home: React.FC = () => {
                     <div className={styles.inputContainer}>
                         <label htmlFor="inputName">Name</label>
                         <input type="text" name="Username" id="inputName" maxLength={8} disabled={isLoad} value={name} onChange={(e) => setName(e.target.value)} required/>
+                    </div>
+                    <div className={styles.gameModeContainer}>
+                        <label htmlFor='inputGameMode'>Game Mode</label>
+                        <select id='inputGameMode' value={gameMode} onChange={(e) => setGameMode(e.target.value as 'classic' | 'enhanced' | 'endless')}>
+                            <option value="classic">Classic 3x3</option>
+                            <option value="enhanced">Enhanced 6x6 - 5 to win</option>
+                            <option value="endless">Endless</option>
+                        </select>
                     </div>
                     <motion.button 
                         disabled={!name.trim()}

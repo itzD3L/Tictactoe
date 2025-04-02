@@ -175,6 +175,37 @@
     outline: none;
 }
 
+.gameModeContainer {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    position: relative;
+}
+
+.gameModeContainer label {
+    position: absolute;
+    top: -18px;
+    left: 5px;
+    font-size: 0.75rem;
+}
+
+.gameModeContainer select {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px 0 10px;
+    border-radius: 20px;
+    border: 1px solid #000;
+    padding: auto;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #fff;
+}
+
+.gameModeContainer select:focus {
+    outline: none; 
+}
+
 .playerOnlineCounter {
     position: absolute;
     bottom: 50px;
@@ -279,6 +310,16 @@
     margin: 0;
 }
 
+.game__title {
+    text-align: center; 
+    margin: 0;
+}
+
+.game__title h2 {
+text-transform: capitalize;
+margin: 0;
+}
+
 .game__player {
     display: flex;
     flex-direction: row;
@@ -300,28 +341,37 @@
 }
 
 .game__boxes {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three equal columns */
-    grid-template-rows: repeat(3, 1fr);    /* Three equal rows */
-    gap: 5px;                             /* Space between cells */
+}
+
+.game__boxes_classic {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     width: 350px;
     height: 350px;
-    margin: 20px auto;
+}
+
+.game__boxes_enhanced {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 350px;
+    height: 350px;
+}
+
+.game__boxes_endless {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 350px;
+    height: 350px;
 }
 
 .game__boxes_cell {
-    background-color: #D9D9D9;
     position: relative;
-    border: none;
-    font-size: 2rem;
+    background-color: #D9D9D9;
+    border: 1px solid #fff;
     cursor: pointer;
     outline: none;
-
-    /* Center content using Flexbox */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s;
 }
 
 .game__boxes_cell:nth-child(odd) {
@@ -332,6 +382,42 @@
     border-radius: 10px;
 }
 
+/*
+
+.game__boxes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);    
+    gap: 5px;                             
+    width: 350px;
+    height: 350px;
+    margin: 20px auto;
+}
+
+.game__boxes_enhanced {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    width: 400px;  
+    height: 400px;
+}
+
+.game__boxes_cell {
+    background-color: #D9D9D9;
+    position: relative;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    outline: none;
+    
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+
+*/
 /* MatchMaking */
 .matchMakingBG {
     position: fixed;
@@ -353,7 +439,14 @@
     border-radius: 1rem;
     text-align: center;
     width: 250px;
-    height: 130px;
+    height: 155px;
+}
+
+.matchMakingGameMode {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: capitalize;
 }
 
 .matchMakingContent {
@@ -365,7 +458,7 @@
 }
 
 .matchMakingTitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
