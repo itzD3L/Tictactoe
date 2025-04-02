@@ -1,7 +1,7 @@
-import styles from './styles.module.css'
+import styles from '../../styles/styles.module.css'
 import { motion } from 'motion/react';
 
-const Shape: React.FC<{ shape: string }> = ({ shape }) => {
+const Shape: React.FC<{ shape: string, opacity?: number }> = ({ shape, opacity }) => {
 
     let symbolChoosen;
 
@@ -12,6 +12,7 @@ const Shape: React.FC<{ shape: string }> = ({ shape }) => {
                     <motion.path
                         d="M20 20 L80 80"
                         stroke="#000"
+                        strokeOpacity={opacity}
                         strokeWidth="10"
                         strokeLinecap="round"
                         initial={{ pathLength: 0 }}
@@ -24,6 +25,7 @@ const Shape: React.FC<{ shape: string }> = ({ shape }) => {
                     <motion.path
                         d="M80 20 L20 80"
                         stroke="#000"
+                        strokeOpacity={opacity}
                         strokeWidth="10"
                         strokeLinecap="round"
                         initial={{ pathLength: 0 }}
@@ -45,6 +47,8 @@ const Shape: React.FC<{ shape: string }> = ({ shape }) => {
                         cx="50"
                         cy="50"
                         r="40"
+                        stroke="#000"
+                        strokeOpacity={opacity}
                         initial={{
                             strokeDasharray: 251,
                             strokeDashoffset: 251

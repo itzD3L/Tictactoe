@@ -6,6 +6,8 @@ interface GameState {
     setGameId: (id: string) => void;
     currentTurn: {playerName: string; playerId: string; symbol: string};
     setCurrentTurn: (turn : {playerName: string; playerId: string; symbol: string}) => void;
+    gameMode: 'classic' | 'enhanced' | 'endless';
+    setGameMode: (gameMode : 'classic' | 'enhanced' | 'endless') => void;
     board: any[];
     setBoard: (board: any[]) => void;
     status:'win' | 'lose' | 'draw' | 'left' | 'pending';
