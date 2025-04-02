@@ -52,7 +52,7 @@ This project was developed as a hands-on learning experience to understand real-
 - 2.1.0 - Added 6x6 game mode
 - 2.2.0 - Added endless game mode
 - 2.2.1 - Fixed socket connection
-- 2.2.2 - New logo
+- 2.2.2 (Current) - New logo
 
 
 ## Future Updates
@@ -60,6 +60,3 @@ This project was developed as a hands-on learning experience to understand real-
 - Add a leaderboard
 - Add a chat system
 - Vs CPU mode
-
-## Credits
-- Logo/Icon: 
